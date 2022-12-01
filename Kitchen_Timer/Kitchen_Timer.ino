@@ -1,3 +1,5 @@
+#include <LiquidCrystal.h>
+
 /**************************************************
  * Arduino Kitchen Timer v1.0 - 2016/01/27
  * By Angelo Fiorillo (Rome, IT)
