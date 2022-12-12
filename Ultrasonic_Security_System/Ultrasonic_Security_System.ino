@@ -7,8 +7,8 @@
  */
 
 
- #define trigPin 2
-#define echoPin 3
+int trigPin = 2
+int echoPin = 3
 #define LEDlampRed 4
 #define LEDlampYellow 5
 #define LEDlampGreen 6 
