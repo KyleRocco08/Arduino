@@ -50,7 +50,7 @@ void loop() {
   }
   if (distanceincm < 5) {
     digitalWrite(LEDlampRed, HIGH);
-    sound = 1000;
+    sound = 1500;
 }
   else {
     digitalWrite(LEDlampRed,LOW);
@@ -63,7 +63,7 @@ void loop() {
   else {
     Serial.print(distanceincm);
     Serial.println(" cm");
-    tone(buzzer, sound);
+    tone(soundbuzzer, sound);
   }
   
   delay(300);
