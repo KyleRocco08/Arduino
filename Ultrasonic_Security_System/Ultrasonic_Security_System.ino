@@ -10,9 +10,9 @@
 int trigPin = 2;
 int echoPin = 3;
 int LEDlampRed = 4;
-int LEDlampYellow 5;
-int LEDlampGreen 6; 
-int soundbuzzer 7;
+int LEDlampYellow = 5;
+int LEDlampGreen = 6; 
+int soundbuzzer = 7;
 int sound = 500;
 
 
