@@ -66,7 +66,7 @@ void loop() {
   }
   else {
     Serial.print(distanceincm);
-    Serial.println(" cm ");
+    Serial.println(" ");
     
   }
   
