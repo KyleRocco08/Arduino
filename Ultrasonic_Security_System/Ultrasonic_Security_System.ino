@@ -1,20 +1,19 @@
 /*
- * Programmer: Kyle Rocco
- * Date: 12.12.22
- * Program: Ultrasonic Sercurity System
- * 
- * Resource:https://create.arduino.cc/projecthub/Krepak/ultrasonic-security-system-3afe13?ref=search&ref_id=red%20green%20yellow%20light%20echo%20sensor&offset=1
+ *Programmer:Sullivan Abegg
+ *Date:12/12/22
+ *Program:Ultrasonic Security  System  
+ *
+ *Resource:https://create.arduino.cc/projecthub/Krepak/ultrasonic-security-system-3afe13?ref=search&ref_id=red%20green%20yellow%20light%20echo%20sensor&offset=1
  */
-
-
 int trigPin = 2;
 int echoPin = 3;
 int LEDlampRed = 4;
 int LEDlampYellow = 5;
-int LEDlampGreen = 6; 
-int soundbuzzer = 7;
+int LEDlampGreen = 6;
+int soundBuzzer = 7;
 int sound = 1500;
-int soundyellow = 1000;
+int soundGreen = 500;
+int soundYellow = 1000;
 
 void setup() {
   Serial.begin (9600);
@@ -23,7 +22,7 @@ void setup() {
   pinMode(LEDlampRed, OUTPUT);
   pinMode(LEDlampYellow, OUTPUT);
   pinMode(LEDlampGreen, OUTPUT);
-  pinMode(soundbuzzer, OUTPUT);
+  pinMode(soundBuzzer, OUTPUT);
 }
 void loop() {
   long durationindigit, distanceincm;
@@ -35,41 +34,43 @@ void loop() {
   durationindigit = pulseIn(echoPin, HIGH);
   distanceincm = (durationindigit/5) / 29.1;
  
-  if (distanceincm <= 10 && distanceincm >= 7) {
+  if (distanceincm <= 15 && distanceincm >= 10) {
       digitalWrite(LEDlampGreen, HIGH);
-      Serial.println(" Close ");
+      tone(soundBuzzer, soundGreen);
+      Serial.println("Getting close proceed with caution");
 }
   else {
       digitalWrite(LEDlampGreen, LOW);
   }
   
-  if (distanceincm <= 6 && distanceincm >= 4) {
-    tone(soundbuzzer, sound);
+  if (distanceincm <= 9 && distanceincm >= 6) {
     digitalWrite(LEDlampYellow, HIGH);
-    Serial.println(" Proceed with Caution ");
+    tone(soundBuzzer, soundYellow);
+    Serial.println("You are very close procceed with caution");
 }
   else {
     digitalWrite(LEDlampYellow,LOW);
   }
-  if (distanceincm <= 3 && distanceincm >= 0) {
+  if (distanceincm <= 5 && distanceincm >= 3) {
     digitalWrite(LEDlampRed, HIGH);
-    tone(soundbuzzer, sound);
-    Serial.println(" Stop ");
+    tone(soundBuzzer, sound);
+    Serial.println("Stop! you are very close");
 }
   else {
     digitalWrite(LEDlampRed,LOW);
-     noTone(soundbuzzer);
-  }
- 
-  if (distanceincm > 10 || distanceincm <= 0){
-    Serial.println(" All Clear ");
-    Serial.println(" ");
-    noTone(soundbuzzer);
+ }
+  if (distanceincm <= 2 && distanceincm >= 1) {
+    Serial.println("AUTOMATIC STOP");
+}
+  if (distanceincm > 15 || distanceincm <= 0){
+    Serial.println("All clear Proceed Forward");
+    noTone(soundBuzzer);
   }
   else {
-     Serial.println(" ");
+    Serial.print(distanceincm);
+    Serial.println(" cm");
     
   }
   
-  delay(300);
+  delay(1000);
 }
