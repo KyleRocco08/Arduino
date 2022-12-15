@@ -13,8 +13,8 @@ int LEDlampRed = 4;
 int LEDlampYellow = 5;
 int LEDlampGreen = 6; 
 int soundbuzzer = 7;
-int sound = 500;
-
+int sound = 1500;
+int soundyellow = 1000;
 
 void setup() {
   Serial.begin (9600);
@@ -44,6 +44,7 @@ void loop() {
   }
   
   if (distanceincm <= 6 && distanceincm >= 4) {
+    tone(soundbuzzer, sound);
     digitalWrite(LEDlampYellow, HIGH);
     Serial.println(" Proceed with Caution ");
 }
