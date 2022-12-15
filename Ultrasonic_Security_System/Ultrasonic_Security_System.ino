@@ -61,7 +61,7 @@ void loop() {
   }
  
   if (distanceincm > 10 || distanceincm <= 0){
-    Serial.println("All Clear");
+    Serial.println(" All Clear ");
     Serial.println(" ");
     noTone(soundbuzzer);
   }
